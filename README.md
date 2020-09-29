@@ -41,15 +41,27 @@ import numpy as np
 
 num_samples = 5000
 mean = [0,0,0]
-cov  = [[1, 0.75, 0],[0.75, 1, 0],[0, 0, 1]]
+cov  = np.eye(3)
 
 X = np.random.multivariate_normal(mean, cov, num_samples)
-X[3:,1] = X[:-3,1]+X[:-3,2]
 
-M = 3
-B = 2
-X_GDI = GDI(X,M,B)
-X_DI = DI(X,M,B)
+X[2:,1] = X[2:,1] + X[:-2,0]
+X[2:,2] = X[2:,2] + X[:-2,1]
+
+M = 4
+B = 10
+
+X_DI = GDI.DI(X,M,B)
+X_GDI = GDI.GDI(X,M,B)
+
+print(X_DI)
+print(X_GDI)
+```
+
+which produces:
+
+```
+
 ```
 
 ## MATLAB
