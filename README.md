@@ -24,7 +24,11 @@ GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI). Extract all file
 *Note*: Our GDI results on binned spike times are normalized using code from CTM-DI, which is only available for MATLAB. For the purposes of this repository, we included normalization factors that were precalculated using CTM-DI and are loaded for our two binned spike time examples. Please note that these normalizations are only appropriate for the already specified bin widths and M values in those examples.
 
 ### Usage
-The 
+The `GDI.py` file contains all functions used for GDI. The core functions are:
+  - DI()
+  - GDI()
+  - GDI_mask()
+  - sign_inference()
 
 ### Minimal Working Example
 The
