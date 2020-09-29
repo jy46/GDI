@@ -11,6 +11,8 @@ function [DI_cond] = di_compute_post(DI_uncond,thresh,M,X,boot_iter)
 %
 % OUTPUTS
 %   DI_cond  : DxD matrix of conditional DI.
+%
+% Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % INITIALIZE
