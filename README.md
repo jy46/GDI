@@ -59,7 +59,7 @@ end
 ```
 
 ## Examples
-We included five different example analyses in our code which correspond to the five results figures in our paper:
+We included five different example analyses in our code which correspond to the five results figures in our paper, and links in parentheses go to the files within our repository corresponding to those examples. 
 
 ### 1. Scaling (scaling.m, [Jupyter Notebook](gdi_python/scaling.ipynb))
 GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
