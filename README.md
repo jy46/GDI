@@ -9,7 +9,11 @@ We offer Python and MATLAB implementations of GDI, which both include five diffe
 
 ## Python
 ### Installation
-The key file 
+GDI was tested using Python 3.7, and requires the following packages:
+  - NumPy
+  - seaborn
+  - SciPy
+  - TensorFlow (<v2.0)
 
 ### Usage
 The
