@@ -1,0 +1,197 @@
+>------------------------------->--------------------------------------->
+   VAR_TO_GRAPH: 		>	List of current contributing				>
+						>	to ion pools								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		magenta        	>	 Color of Range								>
+ V[N1....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		magenta        	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		orange        	>	 Color of Range								>
+ V[N2....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		orange        	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		green         	>	 Color of Range								>
+ V[N3....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		green         	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		red           	>	 Color of Range								>
+ V[N4....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		red           	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		white         	>	 Color of Range								>
+ V[N5....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		white         	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		yellow        	>	 Color of Range								>
+ V[N6....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		yellow        	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		cyan          	>	 Color of Range								>
+ V[N7....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		cyan          	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		magenta        	>	 Color of Range								>
+ V[N8....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		magenta        	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		orange        	>	 Color of Range								>
+ V[N9....]<{ivr}        >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		orange        	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		green         	>	 Color of Range								>
+ V[N10....]<{ivr}       >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		green         	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		100.00        		>	 Min Value of X								>
+		110.00        		>	 Max Value of X								>
+		red           	>	 Color of Range								>
+ V[N11....]<{ivr}       >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		red           	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	GRPH_CHNL:			>	Graph channel								>
+>------------------------------->--------------------------------------->
+		1				>	GAIN of Channel								>
+ time<{ivr}          	>	Var Name for X-axis							>
+		15          	>	 Number of Tic Marks						>
+		0.00        		>	 Min Value of X								>
+		2000.00        		>	 Max Value of X								>
+		red           	>	 Color of Range								>
+ V[N11....]<{ivr}       >	Var Name for Y-axis							>
+		6           	>	 Number of Tic Marks						>
+		-80.000     		>	 Min Value of Y								>
+		40.000     		>	 Max Value of Y								>
+		red           	>	 Color of Range								>
+>------------------------------->--------------------------------------->
+	END:						>										>
+>------------------------------->--------------------------------------->
+
+>------------------------------->--------------------------------------->
+	VAR_TO_FILE: 		>	List of current contributing				>
+						>	to ion pools								>
+>------------------------------->--------------------------------------->
+ time<{ivr}                 >	VAR name                            >
+ V[N1....]<{ivr}            >	VAR name                            >
+ V[N2....]<{ivr}            >	VAR name                            >
+ V[N3....]<{ivr}            >	VAR name                            >
+ V[N4....]<{ivr}            >	VAR name                            >
+ V[N5....]<{ivr}            >	VAR name                            >
+ V[N6....]<{ivr}            >	VAR name                            >
+ V[N7....]<{ivr}            >	VAR name                            >
+ V[N8....]<{ivr}            >	VAR name                            >
+ V[N9....]<{ivr}            >	VAR name                            >
+ V[N10....]<{ivr}           >	VAR name                            >
+ V[N11....]<{ivr}           >	VAR name                            >
+ V[N11....]<{ivr}           >	VAR name                            >
+>------------------------------->--------------------------------------->
+	END:						>										>
+>------------------------------->--------------------------------------->
+
+END:
