@@ -176,12 +176,21 @@ def pair_GDI_mask(X_past_win,X_current,M,B,mask,chan_pair):
 
 
 ################################################################################
-# GDI_mask: FUNCTION TO COMPUTE GDI BETWEEN COLUMNS OF X
+# GDI_mask: COMPUTE GDI BETWEEN COLUMNS OF X & CONDITION AS SPECIFIED BY MASK
 #   INPUTS:
 #       X: Input data with dim (sample)x(channel)
 #       M: History length, i.e. number of past samples to use
 #       B: Number of bootstrap iterations to use for training classifiers
-#       mask:
+#       mask: Square matrix containing zeros and ones which specifies which 
+#             time series / columns GDI is to be computed for as well as which 
+#             time series are to be conditioned on in such GDI computations. 
+#             For example, a mask with all zeros except for ones at elements 
+#             (2,3), (4,3), and (5,4) would mean that GDI would only be computed 
+#             from columns 2 to 3, 4 to 3, and 5 to 4 of X. Furthermore, the 
+#             GDI computation from column 2 to 3 would only be conditioned on 
+#             column 4, while the GDI from 4 to 3 would only be conditioned on 2, 
+#             and finally the GDI from 5 to 4 would not be conditioned on any 
+#             other column, making it equivalent to the DI from 5 to 4. 
 #   OUTPUTS:
 #       GDI_estimate: Estimate of the GDI from rows to columns. Shape is:
 #                     (channel)x(channel)
@@ -199,9 +208,8 @@ def GDI_mask(X,M,B,mask):
     num_samples_to_keep = int(num_windows*(M+1))
     X_trim = X[:num_samples_to_keep,:]
 
-    # RESHAPE SO THAT MATRIX HAS DIM:
-    #   (samples)x(X1(-M+i),X1(-M+1+i),...,X1(i),X2(-M+1),X2(-M+1+i),...)
-    # WHERE EACH SAMPLE CORRESPONDS TO A WINDOW
+    # RESHAPE TO GET ARRAY OF PAST VALUES FOR EACH CHANNEL AND 
+    # TO GET ANOTHER ARRAY OF CURRENT VALUES FOR EACH CHANNEL
     X_past_win = np.zeros((num_windows,num_channels*M))
     X_current  = np.zeros((num_windows,num_channels))
     for chan in range(num_channels):
