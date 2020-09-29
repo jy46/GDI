@@ -96,7 +96,7 @@ The `ccdi_mat` folder contains all of the files/functions for GDI. The core func
   
 For more detail, view the header for each function/file in the `ccdi_mat` folder.
 
-### Minimal Working Example
+### Minimal Working Example [MATLAB](gdi_matlab/minimal_working_example.m)
 The
 
 ```matlab
