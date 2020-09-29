@@ -52,6 +52,12 @@ The
 ### Minimal Working Example
 The
 
+```matlab
+for ii=1:10
+  help(ii) = 1
+end
+```
+
 ## Examples
 We included five different example analyses in our code which correspond to the five results figures in our paper:
 
