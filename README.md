@@ -76,12 +76,13 @@ which shows that GDI eliminated the indirect connection from node 0 to 2 that wa
 
 ## MATLAB
 ### Installation
-The key file
+The 
 
 GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/).
 
 ### Usage
-The
+The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
+  - `di_compute()`:
 
 ### Minimal Working Example
 The
