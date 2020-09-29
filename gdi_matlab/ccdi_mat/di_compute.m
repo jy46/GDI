@@ -6,7 +6,7 @@ function [DI, DI_list] = di_compute(X,M,C,B)
 % INPUTS:
 %   X - data with dim (observations)X(channels)
 %   M - number of past samples to use for DI estimation
-%   C - flag to indicate: (1) condition DI on rest of channels
+%   C - flag to indicate: (1) condition DI on rest of channels (i.e. GDI)
 %                         (0) don't condition DI on other nodes
 %   B - number of bootstrap iterations
 % 
