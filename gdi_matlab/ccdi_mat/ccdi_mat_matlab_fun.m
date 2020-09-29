@@ -20,9 +20,9 @@ function [ est_CDI, est_CDI_list ] = ccdi_mat_matlab_fun( X, Y, Z, B )
     save([pwd '/' sprintf('ccdi_mat/data_for_ccdi_%i.mat', t.ID)],...
          'X','Y','Z','-v7')
     
-    % Load python path - file should have variable named 'python_path'
+    % Load python path - script should have variable named 'python_path'
     % which contains a string for the python path
-    load('python_path_file.mat')
+    python_path_script
     
     % Call Python script to run on saved X,Y,&Z for MI to be estimated by
     % CCMI
