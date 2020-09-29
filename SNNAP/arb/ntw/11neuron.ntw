@@ -1,0 +1,135 @@
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>   modules name: ntw		    >>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+>--------------------------->--------------------------------->
+  LIST_NEURONS:		        >       List of Neurons           >
+>...........................>.................................>
+   N1                       >  Neuron's name                  >
+   ../N1/N1.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N2                       >  Neuron's name                  >
+   ../N2/N2.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N3                       >  Neuron's name                  >
+   ../N3/N3.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N4                       >  Neuron's name                  >
+   ../N4/N4.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N5                       >  Neuron's name                  >
+   ../N5/N5.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N6                       >  Neuron's name                  >
+   ../N6/N6.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N7                       >  Neuron's name                  >
+   ../N7/N7.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N8                       >  Neuron's name                  >
+   ../N8/N8.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N9                       >  Neuron's name                  >
+   ../N9/N9.neu             >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N10                      >  Neuron's name                  >
+   ../N10/N10.neu           >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+   N11                      >  Neuron's name                  >
+   ../N11/N11.neu           >  File Name                      >
+   green                    >  Color name                     >
+>...........................>.................................>
+    END                     >                                 >
+>--------------------------->--------------------------------->
+
+>--------------------------->--------------------------------->
+  CHEMSYN:                  >  Chemical synapse          >
+>...........................>.................................>
+   N4                       >  Name of postsynaptic neuron    >
+   N1                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N1_2_N4_f_exc.cs   >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N10                      >  Name of postsynaptic neuron    >
+   N3                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N3_2_N10_f_exc.cs  >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N11                      >  Name of postsynaptic neuron    >
+   N4                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N4_2_N11_f_exc.cs  >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N10                      >  Name of postsynaptic neuron    >
+   N5                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N5_2_N10_f_exc.cs  >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N1                       >  Name of postsynaptic neuron    >
+   N6                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N6_2_N1_f_exc.cs   >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N2                       >  Name of postsynaptic neuron    >
+   N6                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N6_2_N2_f_exc.cs   >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N3                       >  Name of postsynaptic neuron    >
+   N6                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N6_2_N3_f_exc.cs   >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N5                       >  Name of postsynaptic neuron    >
+   N6                       >  Name of presynaptic neuron     >
+   f_inh                    >  type of synapse                >
+   ../cs/N6_2_N5_f_inh.cs   >  File Name                      >
+   cyan                     >  Color name                     >
+>...........................>.................................>
+   N2                       >  Name of postsynaptic neuron    >
+   N7                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N7_2_N2_f_exc.cs   >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+   N2                       >  Name of postsynaptic neuron    >
+   N8                       >  Name of presynaptic neuron     >
+   f_inh                    >  type of synapse                >
+   ../cs/N8_2_N2_f_inh.cs   >  File Name                      >
+   cyan                     >  Color name                     >
+>...........................>.................................>
+   N2                       >  Name of postsynaptic neuron    >
+   N9                       >  Name of presynaptic neuron     >
+   f_exc                    >  type of synapse                >
+   ../cs/N9_2_N2_f_exc.cs   >  File Name                      >
+   red                      >  Color name                     >
+>...........................>.................................>
+    END                     >                                 >
+>--------------------------->--------------------------------->
+
+>--------------------------->--------------------------------->
+  ELCTRCPL:                 >       Electrical coupling       >
+>...........................>.................................>
+    END                     >                                 >
+>--------------------------->--------------------------------->
+END
