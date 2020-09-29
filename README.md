@@ -36,8 +36,20 @@ For more detail, view the header for each function in the `GDI.py` file.
 The
 
 ```python
-for ii in range(N):
-  list[ii] = 1
+import GDI
+import numpy as np
+
+num_samples = 5000
+mean = [0,0,0]
+cov  = [[1, 0.75, 0],[0.75, 1, 0],[0, 0, 1]]
+
+X = np.random.multivariate_normal(mean, cov, num_samples)
+X[3:,1] = X[:-3,1]+X[:-3,2]
+
+M = 3
+B = 2
+X_GDI = GDI(X,M,B)
+X_DI = DI(X,M,B)
 ```
 
 ## MATLAB
