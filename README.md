@@ -19,12 +19,12 @@ GDI was tested using Python 3.7, and requires the following packages:
   - SciPy
   - TensorFlow (<v2.0)
 
-GDI also requires CCMI, which can be downloaded from here: https://github.com/sudiptodip15/CCMI. Extract all files from the CIT folder of CCMI, and place them in the gdi_python directory of our code.
+GDI also requires CCMI, which can be downloaded [here](https://github.com/sudiptodip15/CCMI). Extract all files from the CIT folder of CCMI, and place them in the gdi_python directory of our code.
 
 *Note*: Our GDI results on binned spike times are normalized using code from CTM-DI, which is only available for MATLAB. For the purposes of this repository, we included normalization factors that were precalculated using CTM-DI and are loaded for our two binned spike time examples. Please note that these normalizations are only appropriate for the already specified bin widths and M values in those examples.
 
 ### Usage
-The
+The 
 
 ### Minimal Working Example
 The
@@ -33,7 +33,7 @@ The
 ### Installation
 The key file
 
-GDI also requires CCMI (download here: https://github.com/sudiptodip15/CCMI) and CTM-DI (download here: http://www.ece.rice.edu/neuroengineering/).
+GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/).
 
 ### Usage
 The
