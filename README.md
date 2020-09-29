@@ -76,10 +76,12 @@ which shows that GDI eliminated the indirect connection from node 0 to 2 that wa
 
 ## MATLAB
 ### Installation
-GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/). Extract all files from the CIT folder of CCMI, and place them in the ccdi_mat directory of our code. The CTM_DI_package folder of CTM-DI should be placed at the same directory level as the ccdi_mat directory of our code.
+Three steps are required:
+1. Download [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/). Extract all files from the CIT folder of CCMI, and place them in the ccdi_mat directory of our code. The CTM_DI_package folder of CTM-DI should be placed at the same directory level as the ccdi_mat directory of our code.
 
-Additionally, one modification to the CCMI code is required:
+2. Modify the CCMI code 
 
+3. Change path of python
 
 ### Usage
 The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
