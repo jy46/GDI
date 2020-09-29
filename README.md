@@ -21,6 +21,8 @@ GDI was tested using Python 3.7, and requires the following packages:
 
 GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI). Extract all files from the CIT folder of CCMI, and place them in the gdi_python directory of our code.
 
+(Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here]().
+
 *Note*: Our GDI results on binned spike times are normalized using code from CTM-DI, which is only available for MATLAB. For the purposes of this repository, we included normalization factors that were precalculated using CTM-DI and are loaded for our two binned spike time examples. Please note that these normalizations are only appropriate for the already specified bin widths and M values in those examples.
 
 ### Usage
@@ -83,11 +85,13 @@ Three steps are required:
 
 3. Change path of python
 
+4. (Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here]().
+
 ### Usage
 The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
-  - `di_compute(X,M,C,B)`:
-  - `di_compute_post(DI_uncond,thresh,M,X,boot_iter)`:
-  - `di_compute_pair(X,M,C,B,pairs)`:
+  - `di_compute(X,M,C,B)`: Computes the DI or GDI between each column of X using the history parameter M (i.e. past number of samples relevant in estimation) and B bootstrap iterations. C is 0 (compute DI) or 1 (compute GDI).
+  - `di_compute_pair(X,M,C,B,pairs)`: Same as `di_compute()`, but computes DI/GDI only for the specified pairs.
+  - `di_compute_post(DI_uncond,thresh,M,X,boot_iter)`: 
 
 ### Minimal Working Example
 The
