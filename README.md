@@ -53,8 +53,3 @@ Arbitrary
 
 ### 5. CPG Network
 CPG
-
-## Method
-GDI takes advantage 
-
-## References
