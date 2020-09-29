@@ -1,3 +1,5 @@
+# Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
+
 ################################################################################
 # IMPORTS
 ################################################################################
@@ -15,14 +17,18 @@ from functools import partial
 
 
 ################################################################################
-# DI: FUNCTION TO COMPUTE DI BETWEEN COLUMNS OF X
+# pair_GDI: COMPUTE GDI BETWEEN TWO CHANNELS
 #   INPUTS:
-#       X: Input data with dim (sample)x(channel)
-#       M: History length, i.e. number of past samples to use
+#       X_past_win: 2D array where rows are samples and columns are dimensions, 
+#                   i.e. variables representing past values of each channel.
+#       X_current: Vector containing samples of current value of target channel.
+#       M: History length, i.e. number of past samples to use.
 #       B: Number of bootstrap iterations to use for training classifiers
+#       chan_pair: Tuple specifying channels to compute GDI between.
+#                  GDI is computed from first element to second element.
 #   OUTPUTS:
-#       DI_estimate: Estimate of the DI from rows to columns. Shape is:
-#                     (channel)x(channel)
+#       GDI_estimate: Estimate of the GDI from first channel of chan_pair to 
+#                     second channel of chan_pair.
 ################################################################################
 def pair_GDI(X_past_win,X_current,M,B,chan_pair):
     chan1 = chan_pair[0]
@@ -47,7 +53,7 @@ def pair_GDI(X_past_win,X_current,M,B,chan_pair):
 
     return GDI_estimate
 ################################################################################
-# END OF GDI
+# END OF pair_GDI
 ################################################################################
 
 
