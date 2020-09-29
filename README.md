@@ -43,17 +43,17 @@ We include
 ## Examples
 We included five different example analyses in our code:
 
-### 1. Scaling
+### 1. Scaling (scaling.m, scaling.ipynb)
 GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
 
-### 2. Gaussian Network
+### 2. Gaussian Network (gaussian.m, gaussian.ipynb)
 GDI is applied to a Gaussian network, which consists of causal influences between nodes that have their own Gaussian noise. The analytic solution for GDI is known for this network, and the accuracy of our GDI estimates is compared with the derived values.
 
-### 3. Nonlinear Network
+### 3. Nonlinear Network (nonlinear.m, nonlinear.ipynb)
 GDI is applied to a nonlinear network, which has the same structure as the Gaussian network however source nodes now follow uniform distributions and causal influence involves a squared relationship.
 
-### 4. Arbitrary Network
+### 4. Arbitrary Network (arb.m, arb.ipynb)
 GDI is applied to binned spike times produced by an abritrary model of a network of neurons.
 
-### 5. CPG Network
+### 5. CPG Network (cpg.m, cpg.ipynb)
 GDI is applied to binned spike times produced by a model of the central pattern generator (CPG) in *Aplyisa*.
