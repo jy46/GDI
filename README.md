@@ -61,7 +61,7 @@ end
 ## Examples
 We included five different example analyses in our code which correspond to the five results figures in our paper:
 
-### 1. Scaling (scaling.m, scaling.ipynb)
+### 1. Scaling (scaling.m, [Jupyter Notebook](gdi_python/scaling.ipynb))
 GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
 
 ### 2. Gaussian Network (gaussian.m, gaussian.ipynb)
