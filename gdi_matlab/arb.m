@@ -186,30 +186,8 @@ for ii=1:length(spike_times)
 end
 [CMatrix, w_i, HMatrix] = CTM_spiketime_wrapper(spike_times_ms_array,M,bin_width,1);
 
-% Compute + plot partial cross correlation
-r_partial = nan(size(smoothed_spike_times,2),size(smoothed_spike_times,2),(2*M)+1);
-connection_sign = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-connection_sign_sum = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-connection_sign_regular = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-connection_sign_regular_sum = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-for ii=1:size(smoothed_spike_times,2)
-    for jj=1:size(smoothed_spike_times,2)
-        if ii~=jj
-            [r_partial, r_regular] = partial_xcorr(smoothed_spike_times, ii, jj, M);
-            r_partial_causal = r_partial(1:M);
-            r_regular_causal = r_regular(1:M);
-            
-            I = find(max(abs(r_partial_causal))==abs(r_partial_causal));
-            connection_sign(ii,jj) = sign(r_partial_causal(I));
-            connection_sign_sum(ii,jj) = sum(r_partial_causal);
-            
-            I = find(max(abs(r_regular_causal))==abs(r_regular_causal));
-            connection_sign_regular(ii,jj) = sign(r_regular_causal(I));
-            connection_sign_regular_sum(ii,jj) = sum(r_regular_causal);            
-        end
-    end
-end
-
+% Sign inference
+[connection_sign, connection_sign_regular] = sign_inference(smoothed_spike_times,M)
 
 % Estimate CCDI
 %smoothed_spike_times(smoothed_spike_times>1)=1;
@@ -229,14 +207,6 @@ DI_cond_post_norm = DI_cond_post*(1/log(2))./HMatrix;
 
 DI_cond_post_norm(logical(eye(11))) = 0;
 DI_norm(logical(eye(11))) = 0;
-
-% SORTING
-[DI_norm_SORTED, I_DI_norm_SORTED] = ...
-    sort(DI_norm(:));
-[DI_cond_post_norm_SORTED, I_DI_cond_post_norm_SORTED] = ...
-    sort(DI_cond_post_norm(:));
-
-save hh_11_neuron.mat
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
