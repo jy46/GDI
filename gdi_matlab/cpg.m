@@ -99,43 +99,8 @@ smoothed_spike_times = spike_times_binned_further;
 % Estimate CTM-DI
 [CMatrix, w_i, HMatrix] = CTM_spiketime_wrapper(spike_times_ms_array,M,bin_width,1);
 
-% Compute + plot partial cross correlation
-r_partial = nan(size(smoothed_spike_times,2),size(smoothed_spike_times,2),(2*M)+1);
-connection_sign = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-connection_sign_sum = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-connection_sign_regular = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-connection_sign_regular_sum = zeros(size(smoothed_spike_times,2),size(smoothed_spike_times,2));
-figure
-load('Actual_90820_2.mat')
-for ii=1:size(smoothed_spike_times,2)
-    for jj=1:size(smoothed_spike_times,2)
-        if ii~=jj
-            [r_partial, r_regular] = partial_xcorr(smoothed_spike_times, ii, jj, M);
-            r_partial_causal = r_partial(1:M);
-            r_regular_causal = r_regular(1:M);
-            
-            if C(ii,jj)~=0
-                subplot(size(smoothed_spike_times,2),...
-                        size(smoothed_spike_times,2),...
-                        jj+((ii-1)*size(smoothed_spike_times,2)))
-                plot(-M:-1,r_partial_causal)
-                xlim([-M -1])
-            end
-            
-            I = find(max(abs(r_partial_causal))==abs(r_partial_causal));
-            connection_sign(ii,jj) = sign(r_partial_causal(I));
-            connection_sign_sum(ii,jj) = sum(r_partial_causal);
-            
-            I = find(max(abs(r_regular_causal))==abs(r_regular_causal));
-            if length(I)>1
-                warning(sprintf('Joe: %i %i Regular corr has multiple peaks',ii,jj));
-                I = I(1);
-            end
-            connection_sign_regular(ii,jj) = sign(r_regular_causal(I));
-            connection_sign_regular_sum(ii,jj) = sum(r_regular_causal);            
-        end
-    end
-end
+% Sign inference
+[connection_sign, connection_sign_regular] = sign_inference(smoothed_spike_times,M)
 
 % Estimate CCDI
 warning('WARNING: Setting entries with >1 spike to 1')
@@ -157,50 +122,6 @@ DI_cond_post_norm = DI_cond_post*(1/log(2))./HMatrix;
 
 DI_cond_post_norm(logical(eye(13))) = 0;
 DI_norm(logical(eye(13))) = 0;
-
-% SORTING
-[DI_norm_SORTED, I_DI_norm_SORTED] = ...
-    sort(DI_norm(:));
-[DI_cond_post_norm_SORTED, I_DI_cond_post_norm_SORTED] = ...
-    sort(DI_cond_post_norm(:));
-
-%% GRAPH
-
-% FIll data structure graph_data to iterate over for plotting graphs
-% graph_data{1} = C;
-% graph_data{2} = DI_norm;
-% graph_data{3} = DI_cond_post_norm;
-% 
-% % Loop through graph_data and plot
-% figure
-% for ii=1:3
-%     [s, t] = find(graph_data{ii}~=0);
-%     clearvars weights
-%     for jj=1:length(s)
-%         weights(jj) = abs(graph_data{ii}(s(jj),t(jj)));
-%     end
-%     
-%     G = digraph(s,t,weights);
-%     LWidths = 5*G.Edges.Weight/max(G.Edges.Weight);
-%     
-%     subplot(1,3,ii)
-%     if ii==1
-%         P(ii) = plot(G,'LineWidth',LWidths);
-%     else
-%         P(ii) = plot(G,'LineWidth',LWidths,'XData',P(1).XData,'YData',P(1).YData);
-%     end
-%     
-%     P(ii).MarkerSize = 8;
-%     
-% end
-
-
-% DI(logical(eye(length(DI)))) = 0;
-% DI = connection_sign.*DI;
-% DI
-
-save(sprintf('CPG/runs_saved/M%i_BW%i_%is_Net%i_norm_B%i',...
-             M,bin_width,time_max,network_sel,boot_iter))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
