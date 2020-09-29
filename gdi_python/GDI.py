@@ -281,7 +281,7 @@ def pair_DI(X_past_win,X_current,M,B,chan_pair):
 
 
 ################################################################################
-# DI: FUNCTION TO COMPUTE DI BETWEEN COLUMNS OF X
+# DI: COMPUTE DI BETWEEN COLUMNS OF X
 #   INPUTS:
 #       X: Input data with dim (sample)x(channel)
 #       M: History length, i.e. number of past samples to use
@@ -303,9 +303,8 @@ def DI(X,M,B):
     num_samples_to_keep = int(num_windows*(M+1))
     X_trim = X[:num_samples_to_keep,:]
 
-    # RESHAPE SO THAT MATRIX HAS DIM:
-    #   (samples)x(X1(-M+i),X1(-M+1+i),...,X1(i),X2(-M+1),X2(-M+1+i),...)
-    # WHERE EACH SAMPLE CORRESPONDS TO A WINDOW
+    # RESHAPE TO GET ARRAY OF PAST VALUES FOR EACH CHANNEL AND 
+    # TO GET ANOTHER ARRAY OF CURRENT VALUES FOR EACH CHANNEL
     X_past_win = np.zeros((num_windows,num_channels*M))
     X_current  = np.zeros((num_windows,num_channels))
     for chan in range(num_channels):
