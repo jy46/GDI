@@ -17,6 +17,9 @@ GDI was tested using Python 3.7, and requires the following packages:
   - SciPy
   - TensorFlow (<v2.0)
 
+GDI also requires CCMI, which can be downloaded from here: https://github.com/sudiptodip15/CCMI.
+
+
 ### Usage
 The
 
@@ -26,8 +29,6 @@ The key file
 
 ### Usage
 The
-
-https://github.com/sudiptodip15/CCMI
 
 ## Examples
 We included five different example anlyses in our code:
