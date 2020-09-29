@@ -81,9 +81,13 @@ which shows that GDI eliminated the indirect connection from node 0 to 2 that wa
 These steps are required:
 1. Download [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/). Extract all files from the CIT folder of CCMI, and place them in the ccdi_mat directory of our code. The CTM_DI_package folder of CTM-DI should be placed at the same directory level as the ccdi_mat directory of our code.
 
-2. Modify one line of the CCMI code to include the CMI estimate for each bootstrap iteration before averaing across bootstrap iterations occurs. The specific line that we want to modify is the return statement at the end of the definition for `get_cmi_est()` in the file `CCMI.py`. When we downloaded CCMI, it was at line 106. Originally, the line is:
+2. Modify a few lines of the CCMI code to include the CMI estimate for each bootstrap iteration before averaing across bootstrap iterations occurs. The specific lines that we want to modify are right around the return statement at the end of the definition for `get_cmi_est()` in the file `CCMI.py`. When we downloaded CCMI, the lines to be considered were 102 to 106, which appear as:
 ```python
-  return cmi_est
+            cmi_est = I_xyz - I_xz
+        else:
+            raise NotImplementedError
+
+        return cmi_est
 ```
 
 Change it to include the list
