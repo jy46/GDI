@@ -41,7 +41,7 @@ The
 We include 
 
 ## Examples
-We included five different example anlyses in our code:
+We included five different example analyses in our code:
 
 ### 1. Scaling
 GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
