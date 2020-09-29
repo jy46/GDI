@@ -35,6 +35,11 @@ For more detail, view the header for each function in the `GDI.py` file.
 ### Minimal Working Example
 The
 
+```python
+for ii in range(N):
+  list[ii] = 1
+```
+
 ## MATLAB
 ### Installation
 The key file
