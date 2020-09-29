@@ -91,7 +91,7 @@ Three steps are required:
 The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
   - `di_compute(X,M,C,B)`: Computes the DI or GDI between each column of X using the history parameter M (i.e. past number of samples relevant in estimation) and B bootstrap iterations. C is 0 (compute DI) or 1 (compute GDI).
   - `di_compute_pair(X,M,C,B,pairs)`: Same as `di_compute()`, but computes DI/GDI only for the specified pairs.
-  - `di_compute_post(DI_uncond,thresh,M,X,boot_iter)`: 
+  - `di_compute_post(DI_uncond,thresh,M,X,B)`: Computes GDI based on thresholding the (non-grapical) DI values. GDI will only be computed between channels with DI values >= thresh, and will only be conditioned on channels with DI values >= thresh. If thresholding means there are no other channels to condition on for a particular GDI analysis, then that GDI analysis will not be performed and the DI value will be taken to be the GDI value.
 
 ### Minimal Working Example
 The
