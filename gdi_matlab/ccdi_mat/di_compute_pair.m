@@ -1,12 +1,12 @@
 function [DI, DI_list] = di_compute_pair(X,M,C,B,pairs)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% COMPUTES DI BETWEEN EACH CHANNEL (COLUMN) OF X USING WINDOWS (RANGES OF
-% ROWS)
+% COMPUTES DI OR GDI BETWEEN CHANNELS (COLUMNS) OF X USING WINDOWS (RANGES 
+% OF ROWS) - BUT ONLY FOR THE PAIRS SPECIFIED
 %
 % INPUTS:
 %   X - data with dim (observations)X(channels)
 %   M - number of past samples to use for DI estimation
-%   C - flag to indicate: (1) condition DI on rest of channels
+%   C - flag to indicate: (1) condition DI on rest of channels (GDI)
 %                         (0) don't condition DI on other nodes
 %   B - number of bootstrap iterations
 %   pairs - Px2 matrix, where each row is a pair and the first column is
@@ -73,7 +73,7 @@ function [DI, DI_list] = di_compute_pair(X,M,C,B,pairs)
         [DI_vec(ii), DI_vec_list(ii,:)] = ccdi_mat_matlab_fun(x,y,z,B);
     end
     
-    % Repack MI into matrix
+    % Repack DI into matrix
     DI = nan(D,D); % Initialize DI mat
     DI_list = nan(D,D,B); % Initialize DI_list mat
     for ii=1:number_of_pairs
