@@ -93,6 +93,8 @@ The `ccdi_mat` folder contains all of the files/functions for GDI. The core func
   - `di_compute_pair(X,M,C,B,pairs)`: Same as `di_compute()`, but computes DI/GDI only for the specified pairs.
   - `di_compute_post(DI_uncond,thresh,M,X,B)`: Computes GDI based on thresholding the (non-grapical) DI values. GDI will only be computed between channels with DI values >= thresh, and will only be conditioned on channels with DI values >= thresh. If thresholding means there are no other channels to condition on for a particular GDI analysis, then that GDI analysis will not be performed and the DI value will be taken to be the GDI value.
 
+For more detail, view the header for each function/file in the `ccdi_mat` folder.
+
 ### Minimal Working Example
 The
 
