@@ -61,17 +61,17 @@ end
 ## Examples
 We included five different example analyses in our code which correspond to the five results figures in our paper, and links in parentheses go to the files within our repository corresponding to those examples. 
 
-### 1. Scaling (scaling.m, [Jupyter Notebook](gdi_python/scaling.ipynb))
+### 1. Scaling ([MATLAB](gdi_matlab/scaling.m), [Jupyter Notebook](gdi_python/scaling.ipynb))
 GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
 
-### 2. Gaussian Network (gaussian.m, gaussian.ipynb)
+### 2. Gaussian Network ([MATLAB](gdi_matlab/gaussian.m), [Jupyter Notebook](gdi_python/gaussian.ipynb))
 GDI is applied to a Gaussian network, which consists of causal influences between nodes that have their own Gaussian noise. The analytic solution for GDI is known for this network, and the accuracy of our GDI estimates is compared with the derived values.
 
-### 3. Nonlinear Network (nonlinear.m, nonlinear.ipynb)
+### 3. Nonlinear Network ([MATLAB](gdi_matlab/nonlinear.m), [Jupyter Notebook](gdi_python/nonlinear.ipynb))
 GDI is applied to a nonlinear network, which has the same structure as the Gaussian network however source nodes now follow uniform distributions and causal influence involves a squared relationship.
 
-### 4. Arbitrary Network (arb.m, arb.ipynb)
+### 4. Arbitrary Network ([MATLAB](gdi_matlab/arb.m), [Jupyter Notebook](gdi_python/arb.ipynb))
 GDI is applied to binned spike times produced by an abritrary model of a network of neurons.
 
-### 5. CPG Network (cpg.m, cpg.ipynb)
+### 5. CPG Network ([MATLAB](gdi_matlab/cpg.m), [Jupyter Notebook](gdi_python/cpg.ipynb))
 GDI is applied to binned spike times produced by a model of the central pattern generator (CPG) in *Aplyisa*.
