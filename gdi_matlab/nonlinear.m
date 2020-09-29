@@ -42,27 +42,8 @@ true_connectivity(1,4) = p2;
 true_connectivity(4,11) = p4;
 
                                  
-% ESTIMATE SIGN
-r_partial = nan(size(X,2),size(X,2),(2*M)+1);
-connection_sign = zeros(size(X,2),size(X,2));
-r_regular = nan(size(X,2),size(X,2),(2*M)+1);
-connection_sign_regular = zeros(size(X,2),size(X,2));
-for ii=1:size(X,2)
-    for jj=1:size(X,2)
-        if ii~=jj
-            [r_partial, r_regular] = partial_xcorr(X, ii, jj, M);
-            
-            r_partial_causal = r_partial(1:M);
-            r_regular_causal = r_regular(1:M);
-            
-            I = find(max(abs(r_partial_causal))==abs(r_partial_causal));
-            connection_sign(ii,jj) = sign(r_partial_causal(I));
-            
-            I = find(max(abs(r_regular_causal))==abs(r_regular_causal));
-            connection_sign_regular(ii,jj) = sign(r_regular_causal(I));                 
-        end
-    end
-end
+% ESTIMATE SIGN                                 
+[connection_sign, connection_sign_regular] = sign_inference(X,M)
 
 % ESTIMATE DI
 DI_uncond = di_compute(X,M,0,B);
