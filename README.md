@@ -25,10 +25,10 @@ GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI). Extract all file
 
 ### Usage
 The `GDI.py` file contains all functions used for GDI. The core functions are:
-  - `DI(X,M,B)`: Compute the pairwise (non-graphical) DI between columns of X with history parameter M (i.e. past number of samples relevant in estimation) and B bootstrap iterations.
-  - `GDI(X,M,B)`: Compute the GDI between columns of X with history parameter M (i.e. past number of samples relevant in estimation) and B bootstrap iterations. When computing the GDI between two columns, all other columns are conditioned on.
-  - `sign_inference(X,M)`: Determine the sign of the relationship between columns of X with history parameter M. 
-  - `GDI_mask(X,M,B,mask)`: Same as `GDI()`, however 
+  - `DI(X,M,B)`: Compute the pairwise (non-graphical) DI between columns of X with history parameter M (i.e. past number of samples relevant in estimation) and B bootstrap iterations. Output is DI matrix where each element is the DI from the row to the column.
+  - `GDI(X,M,B)`: Compute the GDI between columns of X with history parameter M (i.e. past number of samples relevant in estimation) and B bootstrap iterations. When computing the GDI between two columns, all other columns are conditioned on. Output is GDI matrix where each element is the GDI from the row to the column.
+  - `sign_inference(X,M)`: Determine the sign of the relationship between columns of X with history parameter M. Output is
+  - `GDI_mask(X,M,B,mask)`: Same as `GDI()`, however . Output is GDI matrix where each element is the GDI from the row to the column.
   
 For more detail, view the header for each function in the `GDI.py` file.
 
