@@ -6,6 +6,8 @@ function [ est_CDI, est_CDI_list ] = ccdi_mat_matlab_fun( X, Y, Z, B )
 %
 % Calls the python code for CCMI and uses file saving and loading to pass X
 % Y, & Z, which should have dimensions as columns and rows as observations
+%
+% Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     % Save file for python to access, with labindex included so that when
@@ -18,10 +20,14 @@ function [ est_CDI, est_CDI_list ] = ccdi_mat_matlab_fun( X, Y, Z, B )
     save([pwd '/' sprintf('ccdi_mat/data_for_ccdi_%i.mat', t.ID)],...
          'X','Y','Z','-v7')
     
+    % Load python path - file should have variable named 'python_path'
+    % which contains a string for the python path
+    load('python_path_file.mat')
+    
     % Call Python script to run on saved X,Y,&Z for MI to be estimated by
     % CCMI
     system(['unset DYLD_LIBRARY_PATH ;' ...
-      sprintf('/home/joe/anaconda3/envs/tf/bin/python ccdi_mat/ccdi_mat_py_fun.py %i %i',t.ID,B)]);
+      sprintf('%s ccdi_mat/ccdi_mat_py_fun.py %i %i',python_path,t.ID,B)]);
         
     % Load CDI estimate computed by python code for CCMI, which will have
     % name est_CDI. est_CDI_list will also be loaded, containing the
