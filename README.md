@@ -58,7 +58,7 @@ print(X_DI)
 print(X_GDI)
 ```
 
-which produces a DI matrix of:
+An example run produces a DI matrix of:
 ```
 [[ 0.          0.36758208  0.15418205]
  [ 0.04643047  0.          0.46776479]
