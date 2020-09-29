@@ -64,7 +64,9 @@ An example run produces a DI matrix of:
  [ 0.04643047  0.          0.46776479]
  [-0.00124419  0.01545924  0.        ]]
 </pre>
-where the incorrectly identified indirect connection from 0 to 1 is bolded. Then GDI matrix then looks like:
+where the incorrectly identified indirect connection from 0 to 1 is bolded. 
+
+Then GDI matrix then looks like:
 <pre>
 [[ 0.          0.29086685 <b>-0.00878638</b>]
  [-0.03832781  0.          0.21460593]
