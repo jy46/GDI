@@ -16,7 +16,10 @@ function [DI, DI_list] = di_compute_pair(X,M,C,B,pairs)
 % 
 % OUTPUT: 
 %   DI - matrix of DI values where the direction is DI from row to column
-%
+%   DI_list - 3D array where each element is the DI/GDI from the first 
+%             dimension to the second dimension for a given bootstrap 
+%             iteration (third dimension). The prior output, DI, is 
+%             DI_list averaged over the third dimension.
 % Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
