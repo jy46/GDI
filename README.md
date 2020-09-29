@@ -29,6 +29,7 @@ The `GDI.py` file contains all functions used for GDI. The core functions are:
   - `GDI(X,M,B)`:
   - `sign_inference(X,M)`:
   - `GDI_mask(X,M,B,mask)`:
+  
 For more detail, view the headers for each function in the `GDI.py` file.
 
 ### Minimal Working Example
