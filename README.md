@@ -21,7 +21,7 @@ GDI was tested using Python 3.7, and requires the following packages:
 
 GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI). Extract all files from the CIT folder of CCMI, and place them in the gdi_python directory of our code.
 
-(Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here]().
+(Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here](https://drive.google.com/file/d/1OOLpoqL5_SYA9FDRIifWdFgqsfy8w2Q5/view?usp=sharing).
 
 *Note*: Our GDI results on binned spike times are normalized using code from CTM-DI, which is only available for MATLAB. For the purposes of this repository, we included normalization factors that were precalculated using CTM-DI and are loaded for our two binned spike time examples. Please note that these normalizations are only appropriate for the already specified bin widths and M values in those examples.
 
@@ -102,7 +102,7 @@ Change those lines to include the CMI estimates before averaging over bootstrap 
 
 3. Since the core of this toolbox relies on the CCMI implementation which is written in Python, you must insert your python path in the gdi_matlab/python_path_script.m file. This script is called by deeper functions to access python.
 
-4. (Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here]().
+4. (Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here](https://drive.google.com/file/d/1OOLpoqL5_SYA9FDRIifWdFgqsfy8w2Q5/view?usp=sharing).
 
 ### Usage
 The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
