@@ -1,12 +1,13 @@
 function [DI, DI_list] = di_compute_pair_parallel(X,M,C,B,pairs)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% COMPUTES DI BETWEEN EACH CHANNEL (COLUMN) OF X USING WINDOWS (RANGES OF
-% ROWS)
+% COMPUTES DI OR GDI BETWEEN CHANNELS (COLUMNS) OF X USING WINDOWS (RANGES 
+% OF ROWS) - BUT ONLY FOR THE PAIRS SPECIFIED. EACH DI/GDI COMPUTATION IS
+% DONE IN PARALLEL.
 %
 % INPUTS:
 %   X - data with dim (observations)X(channels)
 %   M - number of past samples to use for DI estimation
-%   C - flag to indicate: (1) condition DI on rest of channels
+%   C - flag to indicate: (1) condition DI on rest of channels (GDI)
 %                         (0) don't condition DI on other nodes
 %   B - number of bootstrap iterations
 %   pairs - Px2 matrix, where each row is a pair and the first column is
@@ -16,6 +17,10 @@ function [DI, DI_list] = di_compute_pair_parallel(X,M,C,B,pairs)
 % 
 % OUTPUT: 
 %   DI - matrix of DI values where the direction is DI from row to column
+%   DI_list - 3D array where each element is the DI/GDI from the first 
+%             dimension to the second dimension for a given bootstrap 
+%             iteration (third dimension). The prior output, DI, is 
+%             DI_list averaged over the third dimension.
 %
 % Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,7 +78,7 @@ function [DI, DI_list] = di_compute_pair_parallel(X,M,C,B,pairs)
         [DI_vec(ii), DI_vec_list(ii,:)] = ccdi_mat_matlab_fun(x,y,z,B);
     end
     
-    % Repack MI into matrix
+    % Repack DI into matrix
     DI = nan(D,D); % Initialize DI mat
     DI_list = nan(D,D,B); % Initialize DI_list mat
     for ii=1:number_of_pairs
