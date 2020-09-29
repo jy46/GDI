@@ -53,7 +53,7 @@ GDI is applied to a Gaussian network, which consists of causal influences betwee
 GDI is applied to a nonlinear network, which has the same structure as the Gaussian network however source nodes now follow uniform distributions and causal influence involves a squared relationship.
 
 ### 4. Arbitrary Network
-Arbitrary
+GDI is applied to binned spike times produced by an abritrary model of a network of neurons.
 
 ### 5. CPG Network
-GDI is applied to *Aplyisa*
+GDI is applied to binned spike times produced by a model of the central pattern generator (CPG) in *Aplyisa*.
