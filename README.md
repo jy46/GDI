@@ -47,9 +47,6 @@ The
 ### Minimal Working Example
 The
 
-## SNNAP Files
-We include 
-
 ## Examples
 We included five different example analyses in our code which correspond to the five results figures in our paper:
 
