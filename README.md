@@ -36,6 +36,15 @@ Scaling
 ### 2. Gaussian Network
 Gaussian
 
+### 3. Nonlinear Network
+Nonlinear
+
+### 4. Arbitrary Network
+Arbitrary
+
+### 5. CPG Network
+CPG
+
 ## Method
 GDI takes advantage 
 
