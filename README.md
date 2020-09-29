@@ -23,11 +23,17 @@ GDI also requires CCMI, which can be downloaded from here: https://github.com/su
 ### Usage
 The
 
+### Minimal Working Example
+The
+
 ## MATLAB
 ### Installation
 The key file
 
 ### Usage
+The
+
+### Minimal Working Example
 The
 
 ## Examples
