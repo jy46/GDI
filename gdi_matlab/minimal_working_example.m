@@ -12,5 +12,5 @@ X(3:end,3) = X(3:end,3) + X(1:(end-2),2);
 M = 4;
 B = 10;
 
-X_DI = DI(X,M,B)
-X_GDI = GDI(X,M,B)
+X_DI = di_compute(X,M,0,B)
+X_GDI = di_compute(X,M,1,B)
