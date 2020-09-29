@@ -79,7 +79,7 @@ which shows that GDI eliminated the indirect connection from node 0 to 2 that wa
 ## MATLAB
 ### Installation
 These steps are required:
-1. Download [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/). Extract all files from the CIT folder of CCMI, and place them in the ccdi_mat directory of our code. The CTM_DI_package folder of CTM-DI should be placed at the same directory level as the ccdi_mat directory of our code.
+1. Download [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/). Extract all files from the CIT folder of CCMI, and place them in the ccdi_mat directory of our code. The CTM_DI_package folder of CTM-DI should be placed at the same directory level as the ccdi_mat directory of our code. Ensure that you have the necessary Python packages installed as listed in the prior Python section.
 
 2. Modify a few lines of the CCMI code to include the CMI estimate for each bootstrap iteration before averaing across bootstrap iterations occurs. The specific lines that we want to modify are right around the return statement at the end of the definition for `get_cmi_est()` in the file `CCMI.py`. When we downloaded CCMI, the lines to be considered were 102 to 106, which appear as:
 ```python
@@ -100,7 +100,7 @@ Change those lines to include the CMI estimates before averaging over bootstrap 
         return cmi_est, cmi_est_list
 ```
 
-3. Change path of python
+3. Since the core of this toolbox relies on the CCMI implementation which is written in Python, you must insert your python path in the gdi_matlab/python_path_script.m file. This script is called by deeper functions to access python.
 
 4. (Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here]().
 
