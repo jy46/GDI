@@ -30,10 +30,10 @@ The
 https://github.com/sudiptodip15/CCMI
 
 ## Examples
-We included five different example anlyses in our code.
+We included five different example anlyses in our code:
 
 ### 1. Scaling
-Scaling
+GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
 
 ### 2. Gaussian Network
 Gaussian
