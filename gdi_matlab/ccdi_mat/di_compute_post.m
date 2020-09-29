@@ -8,6 +8,8 @@ function [DI_cond] = di_compute_post(DI_uncond,thresh,M,X,boot_iter)
 %   thresh   : Threshold to apply to DI_uncond. DI_cond will only be based
 %              on conditioning on channels with DI_uncond values >=thresh.
 %   M        : Memory for DI.
+%   X - data with dim (observations)X(channels)
+%   boot_iter - number of bootstrap iterations
 %
 % OUTPUTS
 %   DI_cond  : DxD matrix of conditional DI.
