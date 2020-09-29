@@ -7,7 +7,7 @@ GDI is an extension of DI that conditions not only on the past of Y(t), but also
 
 We note that one must choose a history parameter which controls the number of past samples that are considered when using the pasts of X(t) and the time series being conditioned on, which is referred to as M in our code.
 
-We offer Python and MATLAB implementations of GDI, which both include five different example GDI analyses as well as instructions on how to install both. We also include the SNNAP (https://med.uth.edu/nba/snnap/) files which were used to simulate networks of neurons.
+We offer Python and MATLAB implementations of GDI, which both include five different example GDI analyses as well as instructions on how to install both. We also include the [SNNAP](https://med.uth.edu/nba/snnap/) files which were used to simulate networks of neurons.
 
 For all relevant references, please see our paper.
 
