@@ -1,3 +1,4 @@
+# Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 # IMPORTS
 from CCMI import CCMI
 import scipy.io as sio
