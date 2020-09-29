@@ -336,14 +336,12 @@ def DI(X,M,B):
 
 
 ################################################################################
-# partial_corr: FUNCTION TO PERFORM SIGN INFERENCE OF RELATIONSHIPS BETWEEN
-#                 COLUMNS OF X
+# partial_corr: COMPUTE PARTIAL CORRELATIONS BETWEEN COLUMNS OF X
 #   INPUTS:
 #       X: Input data with dim (sample)x(channel)
-#       M: History length, i.e. number of past samples to use
 #   OUTPUTS:
-#       DI_estimate: Estimate of the DI from rows to columns. Shape is:
-#                     (channel)x(channel)
+#       DI_estimate: Estimate of partial correlations between columns of X. 
+#                    Shape is (channel)x(channel).
 ################################################################################
 def partial_corr(X):
 
@@ -372,14 +370,19 @@ def partial_corr(X):
 
 
 ################################################################################
-# sign_inference: FUNCTION TO PERFORM SIGN INFERENCE OF RELATIONSHIPS BETWEEN
-#                 COLUMNS OF X
+# sign_inference: PERFORM SIGN INFERENCE OF RELATIONSHIPS BETWEEN COLUMNS OF X
 #   INPUTS:
 #       X: Input data with dim (sample)x(channel)
 #       M: History length, i.e. number of past samples to use
 #   OUTPUTS:
-#       DI_estimate: Estimate of the DI from rows to columns. Shape is:
-#                     (channel)x(channel)
+#       X_pcorr_sign: Sign inferred for relationships between columns of X
+#                     using partial correlations. X_pcorr_sign has shape 
+#                     (channel)x(channel) and is the sign of the relationship
+#                     from the row channel to the column channel.
+#       X_corr_sign: Sign inferred for relationships between columns of X
+#                    using regular correlations. X_corr_sign has shape 
+#                    (channel)x(channel) and is the sign of the relationship
+#                    from the row channel to the column channel.
 ################################################################################
 def sign_inference(X,M):
 
@@ -404,13 +407,6 @@ def sign_inference(X,M):
         current_pcorr_col = np.squeeze(current_pcorr[:,chan2,:])
         current_corr_col  = np.squeeze(current_corr[:,chan2,:])
 
-        # DEBUG: PRINT
-        print(chan2)
-        print(' ')
-        print(current_pcorr_col)
-        print(' ')
-        print(current_corr_col)
-
         # TAKE MAX ABS VAL ACROSS TAUS
         max_pcorr_val = np.zeros((num_channels,))
         max_corr_val  = np.zeros((num_channels,))
@@ -418,13 +414,7 @@ def sign_inference(X,M):
             max_pcorr_val[chan1] = current_pcorr_col[chan1,np.argmax(np.absolute(current_pcorr_col[chan1,:]))]
             max_corr_val[chan1]  = current_corr_col[chan1,np.argmax(np.absolute(current_corr_col[chan1,:]))]
 
-        # DEBUG: PRINT
-        print(' ')
-        print(max_pcorr_val)
-        print(max_corr_val)
-        print(' ')
-#        if 1:# length of vals more than 1, then check equality
-#            1
+        # TAKE SIGN AT LOWEST LAG THAT WAS FOUND TO PRODUCE MAX ABS VAL
         X_pcorr_sign[:,chan2] = np.sign(max_pcorr_val)
         X_corr_sign[:,chan2]  = np.sign(max_corr_val)
 
@@ -432,5 +422,5 @@ def sign_inference(X,M):
     return X_pcorr_sign, X_corr_sign
 
 ################################################################################
-# END OF DI
+# END OF sign_inference
 ################################################################################
