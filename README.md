@@ -56,4 +56,4 @@ GDI is applied to a nonlinear network, which has the same structure as the Gauss
 Arbitrary
 
 ### 5. CPG Network
-CPG
+GDI is applied to *Aplyisa*
