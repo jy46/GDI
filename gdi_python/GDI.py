@@ -61,7 +61,7 @@ def pair_GDI(X_past_win,X_current,M,B,chan_pair):
 
 
 ################################################################################
-# GDI: FUNCTION TO COMPUTE GDI BETWEEN COLUMNS OF X
+# GDI: COMPUTE GDI BETWEEN COLUMNS OF X
 #   INPUTS:
 #       X: Input data with dim (sample)x(channel)
 #       M: History length, i.e. number of past samples to use
@@ -83,9 +83,8 @@ def GDI(X,M,B):
     num_samples_to_keep = int(num_windows*(M+1))
     X_trim = X[:num_samples_to_keep,:]
 
-    # RESHAPE SO THAT MATRIX HAS DIM:
-    #   (samples)x(X1(-M+i),X1(-M+1+i),...,X1(i),X2(-M+1),X2(-M+1+i),...)
-    # WHERE EACH SAMPLE CORRESPONDS TO A WINDOW
+    # RESHAPE TO GET ARRAY OF PAST VALUES FOR EACH CHANNEL AND 
+    # TO GET ANOTHER ARRAY OF CURRENT VALUES FOR EACH CHANNEL
     X_past_win = np.zeros((num_windows,num_channels*M))
     X_current  = np.zeros((num_windows,num_channels))
     for chan in range(num_channels):
@@ -117,18 +116,28 @@ def GDI(X,M,B):
 
 
 ################################################################################
-# pair_GDI_mask: FUNCTION TO COMPUTE DI BETWEEN COLUMNS OF X
+# pair_GDI_mask: COMPUTE GDI BETWEEN TWO CHANNELS WITH ONLY CONDITIONING ON 
+#                CHANNELS SPECIFIED IN MASK
 #   INPUTS:
-#       X: Input data with dim (sample)x(channel)
-#       M: History length, i.e. number of past samples to use
+#       X_past_win: 2D array where rows are samples and columns are dimensions, 
+#                   i.e. variables representing past values of each channel.
+#       X_current: Vector containing samples of current value of target channel.
+#       M: History length, i.e. number of past samples to use.
 #       B: Number of bootstrap iterations to use for training classifiers
+#       mask: 2D array with dimensions (channel)x(channel). This function looks
+#             at the column mask[:,chan_pair[1]] and only conditions GDI on 
+#             the other channels of that column which are 1.
+#       chan_pair: Tuple specifying channels to compute GDI between.
+#                  GDI is computed from first element to second element.
 #   OUTPUTS:
-#       DI_estimate: Estimate of the DI from rows to columns. Shape is:
-#                     (channel)x(channel)
+#       GDI_estimate: Estimate of the GDI from first channel of chan_pair to 
+#                     second channel of chan_pair.
 ################################################################################
 def pair_GDI_mask(X_past_win,X_current,M,B,mask,chan_pair):
     chan1 = chan_pair[0]
     chan2 = chan_pair[1]
+    
+    # CHECK TO MAKE SURE NOT DIAGONAL & THAT MASK SPECIFIED TO DO THIS COMPUTATION
     if (chan1!=chan2) and (mask[chan1,chan2]!=0):
 
         # USE MASK TO KNOW WHICH CHANNELS TO CONDITION ON
