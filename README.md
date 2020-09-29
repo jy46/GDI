@@ -7,7 +7,7 @@ GDI is an extension of DI that conditions not only on the past of Y(t), but also
 
 We note that one must choose a history parameter which controls the number of past samples that are considered when using the pasts of X(t) and the time series being conditioned on, which is referred to as M in our code.
 
-We offer Python and MATLAB implementations of GDI, which both include five different example GDI analyses as well as instructions on how to install both.
+We offer Python and MATLAB implementations of GDI, which both include five different example GDI analyses as well as instructions on how to install both. We also include the SNNAP (https://www.google.com/search?client=safari&rls=en&q=SNNAP&ie=UTF-8&oe=UTF-8) files which were used to simulate networks of neurons.
 
 For all relevant references, please see our paper.
 
@@ -37,6 +37,9 @@ The
 ### Minimal Working Example
 The
 
+## SNNAP Files
+We include 
+
 ## Examples
 We included five different example anlyses in our code:
 
@@ -47,7 +50,7 @@ GDI's performance with regard to sample size, the number of dimensions being con
 GDI is applied to a Gaussian network, which consists of causal influences between nodes that have their own Gaussian noise. The analytic solution for GDI is known for this network, and the accuracy of our GDI estimates is compared with the derived values.
 
 ### 3. Nonlinear Network
-Nonlinear
+GDI is applied to a nonlinear network, which has the same structure as the Gaussian network however source nodes now follow uniform distributions and causal influence involves a squared relationship.
 
 ### 4. Arbitrary Network
 Arbitrary
