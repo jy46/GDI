@@ -32,8 +32,8 @@ The `GDI.py` file contains all functions used for GDI. The core functions are:
   
 For more detail, view the header for each function in the `GDI.py` file.
 
-### Minimal Working Example
-The
+### Minimal Working Example [Jupyter Notebook](gdi_python/minimal_working_example.ipynb))
+Here we construct an example where node 0 causally influences node 1 and node 1 causally influences node 2. This results direct connections from 0 to 1 and 1 to 2 as well as an indirect connection from 0 to 2 which GDI correctly eliminates.
 
 ```python
 import GDI
