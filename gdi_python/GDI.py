@@ -241,14 +241,18 @@ def GDI_mask(X,M,B,mask):
 
 
 ################################################################################
-# DI: FUNCTION TO COMPUTE DI BETWEEN COLUMNS OF X
+# pair_DI: COMPUTE (NON-GRAPHICAL) DI BETWEEN TWO CHANNELS
 #   INPUTS:
-#       X: Input data with dim (sample)x(channel)
-#       M: History length, i.e. number of past samples to use
+#       X_past_win: 2D array where rows are samples and columns are dimensions, 
+#                   i.e. variables representing past values of each channel.
+#       X_current: Vector containing samples of current value of target channel.
+#       M: History length, i.e. number of past samples to use.
 #       B: Number of bootstrap iterations to use for training classifiers
+#       chan_pair: Tuple specifying channels to compute DI between.
+#                  DI is computed from first element to second element.
 #   OUTPUTS:
-#       DI_estimate: Estimate of the DI from rows to columns. Shape is:
-#                     (channel)x(channel)
+#       DI_estimate: Estimate of the DI from first channel of chan_pair to 
+#                     second channel of chan_pair.
 ################################################################################
 def pair_DI(X_past_win,X_current,M,B,chan_pair):
     chan1 = chan_pair[0]
@@ -269,7 +273,7 @@ def pair_DI(X_past_win,X_current,M,B,chan_pair):
 
     return DI_estimate
 ################################################################################
-# END OF GDI
+# END OF pair_DI
 ################################################################################
 
 
