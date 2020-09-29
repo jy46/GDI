@@ -5,12 +5,28 @@ The directed information (DI) from a time series X(t) to another time series Y(t
 
 GDI is an extension of DI that conditions not only on the past of Y(t), but also conditions on the pasts of other time series W(t), Z(t), etc. Conditioning on other time series enables the identification and quantification of a direct connection from one time series to another as well as the possibility for eliminating indirect connections.
 
-We offer both Python and MATLAB implementations of GDI, along 
+We offer Python and MATLAB implementations of GDI, which both include five different example GDI analyses.
 
+### Hi
 
 ## Python Implementation
+The key file 
 
 ## MATLAB Implementation
+The key file
 
 https://github.com/sudiptodip15/CCMI
 
+## Examples
+We included five different example anlyses in our code.
+
+### 1. Scaling
+Scaling
+
+### 2. Gaussian Network
+Gaussian
+
+## Method
+GDI takes advantage 
+
+## References
