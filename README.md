@@ -9,6 +9,8 @@ We note that one must choose a history parameter which controls the number of pa
 
 We offer Python and MATLAB implementations of GDI, which both include five different example GDI analyses as well as instructions on how to install both.
 
+For all relevant references, please see our paper.
+
 ## Python
 ### Installation
 GDI was tested using Python 3.7, and requires the following packages:
