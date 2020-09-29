@@ -59,17 +59,17 @@ print(X_GDI)
 ```
 
 An example run produces a DI matrix of:
-```
-[[ 0.          0.36758208  0.15418205]
+<pre>
+[[ 0.          0.36758208  <b>0.15418205</b>]
  [ 0.04643047  0.          0.46776479]
  [-0.00124419  0.01545924  0.        ]]
-```
-and a GDI matrix of:
-```
-[[ 0.          0.29086685 -0.00878638]
+</pre>
+where the incorrectly identified indirect connection from 0 to 1 is bolded. Then GDI matrix then looks like:
+<pre>
+[[ 0.          0.29086685 <b>-0.00878638</b>]
  [-0.03832781  0.          0.21460593]
  [ 0.01501656 -0.00237674  0.        ]]
-```
+</pre>
 which shows that GDI eliminated the indirect connection from node 0 to 2 that was incorrectly identified by DI.
 
 ## MATLAB
