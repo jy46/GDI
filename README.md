@@ -122,7 +122,7 @@ for ii=1:10
 end
 ```
 
-## Examples
+## Examples Used in Paper
 We included five different example analyses in our code which correspond to the five results figures in our paper, and links in parentheses go to the files within our repository corresponding to those examples. 
 
 ### 1. Scaling ([MATLAB](gdi_matlab/scaling.m), [Jupyter Notebook](gdi_python/scaling.ipynb))
