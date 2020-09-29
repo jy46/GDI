@@ -85,7 +85,9 @@ Three steps are required:
 
 ### Usage
 The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
-  - `di_compute()`:
+  - `di_compute(X,M,C,B)`:
+  - `di_compute_post(DI_uncond,thresh,M,X,boot_iter)`:
+  - `di_compute_pair(X,M,C,B,pairs)`:
 
 ### Minimal Working Example
 The
