@@ -36,7 +36,7 @@ We included five different example anlyses in our code:
 GDI's performance with regard to sample size, the number of dimensions being conditioned on, and the number of bootstrap iterations (see Method section below) is analyzed.
 
 ### 2. Gaussian Network
-Gaussian
+GDI is applied to a Gaussian network, which consists of causal influences between nodes that have their own Gaussian noise. The analytic solution for GDI is known for this network, and the accuracy of our GDI estimates is compared with the derived values.
 
 ### 3. Nonlinear Network
 Nonlinear
