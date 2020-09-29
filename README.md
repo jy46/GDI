@@ -114,7 +114,7 @@ The `ccdi_mat` folder contains all of the files/functions for GDI. The core func
 For more detail, view the header for each function/file in the `ccdi_mat` folder.
 
 ### Minimal Working Example ([MATLAB](gdi_matlab/minimal_working_example.m))
-The
+Here we construct an example where node 1 causally influences node 2 and node 2 causally influences node 3. This results in direct connections from 1 to 2 and 2 to 3 as well as an indirect connection from 1 to 3 which GDI correctly eliminates.
 
 ```matlab
 addpath ccdi_mat
