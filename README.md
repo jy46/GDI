@@ -25,10 +25,10 @@ GDI also requires [CCMI](https://github.com/sudiptodip15/CCMI). Extract all file
 
 ### Usage
 The `GDI.py` file contains all functions used for GDI. The core functions are:
-  - `DI()`
-  - `GDI()`
-  - `sign_inference()`
-  - `GDI_mask()`
+  - `DI(X,M,B)`
+  - `GDI(X,M,B)`
+  - `sign_inference(X,M)`
+  - `GDI_mask(X,M,B,mask)`
 
 ### Minimal Working Example
 The
