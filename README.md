@@ -21,6 +21,8 @@ GDI was tested using Python 3.7, and requires the following packages:
 
 GDI also requires CCMI, which can be downloaded from here: https://github.com/sudiptodip15/CCMI. Extract all files from the CIT folder of CCMI, and place them in the gdi_python directory of our code.
 
+*Note*: Our GDI results on binned spike times are normalized using code from 
+
 ### Usage
 The
 
@@ -30,6 +32,8 @@ The
 ## MATLAB
 ### Installation
 The key file
+
+GDI also requires CCMI (download here: https://github.com/sudiptodip15/CCMI) and CTM-DI (download here: http://www.ece.rice.edu/neuroengineering/).
 
 ### Usage
 The
