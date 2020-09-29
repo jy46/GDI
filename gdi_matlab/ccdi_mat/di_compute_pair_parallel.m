@@ -16,6 +16,8 @@ function [DI, DI_list] = di_compute_pair_parallel(X,M,C,B,pairs)
 % 
 % OUTPUT: 
 %   DI - matrix of DI values where the direction is DI from row to column
+%
+% Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
