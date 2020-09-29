@@ -90,9 +90,14 @@ These steps are required:
         return cmi_est
 ```
 
-Change it to include the list
+Change those lines to include the CMI estimates before averaging over bootstrap iterations:
 ```python
-return cmi_est, cmi_est_list
+            cmi_est_list = I_xyz_list - I_xz_list
+            cmi_est = I_xyz - I_xz
+        else:
+            raise NotImplementedError
+
+        return cmi_est, cmi_est_list
 ```
 
 3. Change path of python
