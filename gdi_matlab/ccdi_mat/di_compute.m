@@ -1,7 +1,7 @@
 function [DI, DI_list] = di_compute(X,M,C,B)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% COMPUTES DI BETWEEN EACH CHANNEL (COLUMN) OF X USING WINDOWS (RANGES OF
-% ROWS)
+% COMPUTES DI OR GDI BETWEEN EACH CHANNEL (COLUMN) OF X USING WINDOWS 
+% (RANGES OF ROWS)
 %
 % INPUTS:
 %   X - data with dim (observations)X(channels)
