@@ -25,7 +25,6 @@ bin_width   = 30;
 boot_iter   = 100;
 kernel_type = 'none';
 time_max    = 200; % Maximum time to extract in seconds
-network_sel = 'rockon';
 
 % For Fig5 networks B, C
 % bin_width   = 25;
@@ -40,7 +39,7 @@ network_sel = 'rockon';
 % M           = 3;
 
 % Load data
-SNNAP_output = load(['hh_testing/network' network_sel '.smu.out']);
+SNNAP_output = load('arb.out');
 SNNAP_output(find(round(SNNAP_output(:,1),4)==time_max)+1:end,:) = []; % Keep to time_max
 
 % Extract data
