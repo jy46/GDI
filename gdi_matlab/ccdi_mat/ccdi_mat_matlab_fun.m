@@ -26,7 +26,7 @@ function [ est_CDI, est_CDI_list ] = ccdi_mat_matlab_fun( X, Y, Z, B )
     
     % Call Python script to run on saved X,Y,&Z for MI to be estimated by
     % CCMI
-    system(sprintf('export PATH=%s ;%s ccdi_mat/ccdi_mat_py_fun.py %i %i',
+    system(sprintf('export PATH=%s ;%s ccdi_mat/ccdi_mat_py_fun.py %i %i',...
       system_path,python_path,t.ID,B));
         
     % Load CDI estimate computed by python code for CCMI, which will have
