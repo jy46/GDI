@@ -98,11 +98,18 @@ end
 if strcmp(sim_type,'continuous')
     true_DI = -0.5*log(1-(rho^2));
 elseif strcmp(sim_type,'discrete')
-    X = binornd(1,Px,max(sample_sizes),1);
-    Y = bsc(X,p);
-    Y(2:end) = Y(1:end-1);
-    py1 = sum(Y)/max(sample_sizes);
-    true_DI = (-py1*log(py1)-(1-py1)*log(1-py1))-(-p*log(p)-(1-p)*log(1-p));
+    % JOINT
+    px1y1 = Px*(1-p)
+    px1y0 = Px*p
+    px0y1 = (1-Px)*p
+    px0y0 = (1-Px)*(1-p)
+    % MARGINAL
+    py1 = px1y1+px0y1
+    py0 = px1y0+px0y0
+    px1 = px1y1+px1y0
+    px0 = px0y1+px0y0
+    # GDI
+    true_GDI = (px1y1*log(px1y1/(px1*py1)))+(px1y0*log(px1y0/(px1*py0)))+(px0y1*log(px0y1/(px0*py1)))+(px0y0*log(px0y0/(px0*py0)))
 end
 
 %% SAVE
