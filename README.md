@@ -135,6 +135,22 @@ X_DI = di_compute(X,M,0,B)
 X_GDI = di_compute(X,M,1,B)
 ```
 
+An example run produces a DI matrix of:
+<pre>
+       NaN    0.3569    0.1730
+   -0.0298       NaN    0.4008
+   -0.0060   -0.1157       NaN
+</pre>
+where the incorrectly identified indirect connection from 0 to 1 is bolded. 
+
+Then GDI matrix then looks like:
+<pre>
+       NaN    0.2392    <b>-0.0166</b>
+    0.0490       NaN    0.3186
+   -0.0438   -0.1290       NaN
+</pre>
+which shows that GDI eliminated the indirect connection from node 0 to 2 that was incorrectly identified by DI.
+
 ## Examples Used in Paper
 We included five different example analyses in our code which correspond to the five results figures in our paper, and links in parentheses go to the files within our repository corresponding to those examples. 
 
