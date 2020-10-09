@@ -108,7 +108,7 @@ elseif strcmp(sim_type,'discrete')
     py0 = px1y0+px0y0
     px1 = px1y1+px1y0
     px0 = px0y1+px0y0
-    # GDI
+    % GDI
     true_GDI = (px1y1*log(px1y1/(px1*py1)))+(px1y0*log(px1y0/(px1*py0)))+(px0y1*log(px0y1/(px0*py1)))+(px0y0*log(px0y0/(px0*py0)))
 end
 
