@@ -3,43 +3,20 @@ clear all
 close all
 
 % Add relevant paths
-addpath hh_testing
 addpath ccdi_mat
 addpath CTM_DI_package/Supporting_functions/
 addpath CTM_DI_package/CTM_DI/
 
-% Make plots tabs in figure window
-set(0,'DefaultFigureWindowStyle','docked')
-
-% Colorbrewer
-addpath DrosteEffect-BrewerMap-5b84f95/
-set(0,'DefaultAxesColorOrder',brewermap(11,'Set1'))
-colors = colororder;
-
 % User parameters
 time_step   = 0.001;
-sigma       = 2;
-M           = 3;
-C           = 0;
-bin_width   = 30;
-boot_iter   = 100;
-kernel_type = 'none';
-time_max    = 200; % Maximum time to extract in seconds
-
-% For Fig5 networks B, C
-% bin_width   = 25;
-% M           = 10;
-
-% For Fig6 network _A1
-% bin_width   = 60;
-% M           = 5;
-
-% For Fig6 network _A1, _A2, _A3
-% bin_width   = 100;
-% M           = 3;
+M           = 3; % memory parameter
+bin_width   = 30;  
+boot_iter   = 2; % number of bootstrap iterations to use for classifier
+time_max    = 300; % Maximum time to extract in seconds
 
 % Load data
 SNNAP_output = load('arb.out');
+SNNAP_output(:,end) = []; % Output had a duplicate neuron, so remove
 SNNAP_output(find(round(SNNAP_output(:,1),4)==time_max)+1:end,:) = []; % Keep to time_max
 
 % Extract data
@@ -54,10 +31,10 @@ end
 hold off
 set(gca,'YDir','reverse')
 yticks([0.5:1:(size(data,2)-0.5)])
-yticklabels({'A';'B';'C'})
 ylabel('Neuron')
 xlabel('Time (s)')
 ylim([0 size(data,2)+0.25])
+title('Raw Waveforms')
 
 % Extract spike times
 for ii=1:size(data,2)
@@ -69,19 +46,17 @@ end
 % Plot spikes overlaying voltage waveforms
 figure
 for ii=1:size(data,2)
-    plot(time, ii-0.5-0.5*(data(:,ii)/max(abs(data(:,ii)))), 'Color',...
-         colors(ii,:))
+    plot(time, ii-0.5-0.5*(data(:,ii)/max(abs(data(:,ii)))))
     hold on
     scatter(spike_times{ii},ii-0.5-0.5*(peaks{ii}/max(abs(data(:,ii)))),'k*')
 end
 hold off
 set(gca,'YDir','reverse')
 yticks([0.5:1:(size(data,2)-0.5)])
-yticklabels({'A';'B';'C'})
 ylabel('Neuron')
 xlabel('Time (s)')
 ylim([0 size(data,2)+0.25])
-
+title('Spike Detection')
 
 % TRUE RASTER PLOT !
 figure
@@ -98,6 +73,7 @@ ylabel('Neuron')
 xlabel('Time (s)')
 ylim([0.5 11.5])
 xlim([50 60])
+title('Raster of Spike Times')
 
 
 % Bin spikes
@@ -110,18 +86,17 @@ end
 % that binning worked
 figure
 for ii=1:size(data,2)
-    plot(time, ii-0.5-0.9*spike_times_binned(:,ii), 'Color',...
-         colors(ii,:))
+    plot(time, ii-0.5-0.9*spike_times_binned(:,ii))
     hold on
     scatter(spike_times{ii},ii-0.5-0.9*ones(size(spike_times{ii})),'k*')
 end
 hold off
 set(gca,'YDir','reverse')
 yticks([0:1:(size(data,2)-1)])
-yticklabels({'A';'B';'C'})
 ylabel('Neuron')
 xlabel('Time (s)')
 ylim([min(ylim)-0.25 max(ylim)+0.25])
+title('Raster of Binned Spikes')
 
 % Further bin spike times
 for ii=1:size(spike_times_binned,2)
@@ -139,41 +114,7 @@ for ii=1:size(spike_times_binned_further,2)
     hold on
 end
 hold off
-
-% Smooth binned spike times with Gaussian kernel
-edges  = -3*sigma:1:3*sigma;
-switch kernel_type
-    case 'gaussian'
-        kernel = normpdf(edges,0,sigma);
-    case 'gamma'
-        kernel = gampdf(edges,1,1);
-    case 'none'
-        kernel = zeros(1,length(edges));
-        kernel(round(length(edges)/2)) = 1;
-end
-
-center = ceil(length(edges)/2);
-for ii=1:size(spike_times_binned_further,2)
-    s = conv(spike_times_binned_further(:,ii),kernel);
-    s = s(center:end);
-    s = s(1:length(spike_times_binned_further(:,ii)));
-    smoothed_spike_times(:,ii) = s;
-end
-
-% Plot smoothed spike times
-figure
-for ii=1:size(smoothed_spike_times,2)
-    plot(time_further_binned, ii-0.5-0.9*(smoothed_spike_times(:,ii)/...
-            max(smoothed_spike_times(:,ii))))
-    hold on
-end
-hold off
-set(gca,'YDir','reverse')
-yticks([0:1:(size(data,2)-1)])
-yticklabels({'A';'B';'C'})
-ylabel('Neuron')
-ylim([min(ylim)-0.25 max(ylim)+0.25])
-ylim_smoothed = ylim;
+title('Raster of Further Binned Spikes')
 
 % Estimate CTM-DI
 % First convert spike_times 1) from a cell to zero padded
@@ -186,11 +127,10 @@ end
 [CMatrix, w_i, HMatrix] = CTM_spiketime_wrapper(spike_times_ms_array,M,bin_width,1);
 
 % Sign inference
-[connection_sign, connection_sign_regular] = sign_inference(smoothed_spike_times,M)
+[connection_sign, connection_sign_regular] = sign_inference(spike_times_binned_further,M);
 
 % Estimate CCDI
-%smoothed_spike_times(smoothed_spike_times>1)=1;
-[DI, DI_list] = di_compute(smoothed_spike_times,M,C,boot_iter);
+[DI, DI_list] = di_compute(spike_times_binned_further,M,0,boot_iter);
 
 DI(DI<0) = 0;
 
@@ -200,12 +140,51 @@ DI_thresholded = (DI_norm/(1/log(2))).*HMatrix;
 
 thresh = eps;
 
-DI_cond_post = di_compute_post(DI_thresholded,thresh,M,smoothed_spike_times,boot_iter);
+DI_cond_post = di_compute_post(DI_thresholded,thresh,M,spike_times_binned_further,boot_iter);
 DI_cond_post(DI_cond_post<0)=0;
 DI_cond_post_norm = DI_cond_post*(1/log(2))./HMatrix;
 
 DI_cond_post_norm(logical(eye(11))) = 0;
 DI_norm(logical(eye(11))) = 0;
+
+%% TRUE CONNECTIVITY
+true_connectivity = zeros(size(spike_times_binned_further,2),...
+                          size(spike_times_binned_further,2));
+true_connectivity(6,[1 3 5]) = [1 1 -1];
+true_connectivity([6 9],2) = 1;
+true_connectivity(8,2) = -1;
+true_connectivity([3 5],10) = 1;
+true_connectivity(1,4) = 1;
+true_connectivity(4,11) = 1;
+
+%% PLOT RESULTS
+figure
+
+subplot(1,3,1)
+imagesc(true_connectivity)
+colormap cool
+colorbar
+title('True Connectivity')
+
+subplot(1,3,2)
+imagesc(DI_norm)
+colormap cool
+colorbar
+c_save(2,:) = caxis;
+title('Estimated DI')
+
+subplot(1,3,3)
+imagesc(DI_cond_post_norm)
+colormap cool
+colorbar
+c_save(3,:) = caxis;
+title('Estimated GDI')
+
+for ii=2:3
+    subplot(1,3,ii)
+    caxis([-max(abs(c_save(:))) max(abs(c_save(:)))])
+end
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
