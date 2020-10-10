@@ -129,8 +129,29 @@ Change those lines to include the CMI estimates before averaging over bootstrap 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
 
-4. Modify `CTM_DI_package/CTM_DI/Connect_CTM.m`as follows:
-- A
+4. Modify `CTM_DI_package/CTM_DI/Connect_CTM.m` as follows:
+- Change the function definition to:
+```matlab
+  function [CMatrix,w_i,HMatrix] = Connect_CTM(Sig,D,causal,sumspike,sig_label)
+```
+- Add this line in between lines 68 and 69 (which should be between `weight_matrix = zeros(channel);` and `for cnt = 1:length(row)`):
+```matlab
+  w_i = nan(channel,channel,D+1);
+```
+- Just after what should now be line 75 (`weight_matrix(col(cnt),row(cnt))=sum(weights2(1+causal:end));`), add these two lines just before `end`:
+```matlab
+  w_i(row(cnt),col(cnt),1:length(weights1)) = weights1;
+  w_i(col(cnt),row(cnt),1:length(weights2)) = weights2;    
+```
+- Just after the definition of CMatrix (`CMatrix = zeros(channel,channel);`) which should be at line 83 now, add this right after:
+```matlab
+  HMatrix = zeros(channel,channel);
+```
+- Just after `CMatrix(col(cnt), row(cnt)) = DI21/H1;` which should now be at line 117, add these two lines:
+```matlab
+  HMatrix(row(cnt), col(cnt)) = H2;
+  HMatrix(col(cnt), row(cnt)) = H1;
+```
 
 5. Since the core of this toolbox relies on the CCMI implementation which is written in Python, you must insert your system path and python path in the `gdi_matlab/python_path_script.m` file. This script is called by deeper functions to access python. This means copying the terminal output for the command `echo $PATH` and putting it in between the '' for system_path in the `gdi_matlab/python_path_script.m` file, and then also copying the output for the command `which python` and putting it in between the '' for the python_path in the `gdi_matlab/python_path_script.m` file.
 
