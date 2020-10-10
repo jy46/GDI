@@ -11,17 +11,13 @@ close all
 % Add relevant paths
 addpath ccdi_mat CTM_DI_package/CTM_DI CTM_DI_package/Supporting_functions
 
-% Make plots tabs in figure window
-set(0,'DefaultFigureWindowStyle','docked')
-
 % User parameters
 M           = 3;
-bin_width   = 75; % Bin width in ms
-boot_iter   = 100;
+bin_width   = 50; % Bin width in ms
+boot_iter   = 5;
 time_max    = 400; % Maximum time to extract in seconds
-%thresh      = 0.005; % Threshold to apply to DI_thresholded and for condit
-network_sel = 3; % sim 1: 20%, 2 is 15% and 3 is 10% noise
-file_path   = 'CPG/spiketimes2.mat';
+network_sel = 3; 
+file_path   = 'spiketimes2.mat';
 
 % Load data
 SNNAP_output = load(file_path);
@@ -93,20 +89,18 @@ xlabel('Time (s)')
 ylabel('Neuron')
 title('CPG Binned Further Raster Plot')
 
-% For sake of old code, make spike_times_binned_further=smoothed_spike_times
-smoothed_spike_times = spike_times_binned_further;
-
 % Estimate CTM-DI
 [CMatrix, w_i, HMatrix] = CTM_spiketime_wrapper(spike_times_ms_array,M,bin_width,1);
 
 % Sign inference
-[connection_sign, connection_sign_regular] = sign_inference(smoothed_spike_times,M)
+[connection_sign, connection_sign_regular] = ...
+    sign_inference(spike_times_binned_further,M);
 
 % Estimate CCDI
 warning('WARNING: Setting entries with >1 spike to 1')
-smoothed_spike_times(smoothed_spike_times>1) = 1;
+spike_times_binned_further(spike_times_binned_further>1) = 1;
 
-[DI, DI_list] = di_compute(smoothed_spike_times,M,0,boot_iter);
+[DI, DI_list] = di_compute(spike_times_binned_further,M,0,boot_iter);
 
 DI(DI<0) = 0;
 
@@ -116,12 +110,52 @@ DI_thresholded = (DI_norm/(1/log(2))).*HMatrix;
 
 thresh = eps;
 
-DI_cond_post = di_compute_post(DI_thresholded,thresh,M,smoothed_spike_times,boot_iter);
+DI_cond_post = di_compute_post(DI_thresholded,thresh,M,spike_times_binned_further,boot_iter);
 DI_cond_post(DI_cond_post<0)=0;
 DI_cond_post_norm = DI_cond_post*(1/log(2))./HMatrix;
 
 DI_cond_post_norm(logical(eye(13))) = 0;
 DI_norm(logical(eye(13))) = 0;
+
+%% LOAD TRUE CONNECTIVITY
+load('Actual_90820_2.mat')
+
+%% PLOT RESULTS
+figure
+
+subplot(1,3,1)
+imagesc(C)
+colormap cool
+colorbar
+caxis([-max(abs(caxis)) max(abs(caxis))])
+title('True Connectivity')
+
+subplot(1,3,2)
+imagesc(connection_sign_regular.*DI_norm)
+colormap cool
+colorbar
+c_save(2,:) = caxis;
+title('Estimated DI')
+
+subplot(1,3,3)
+imagesc(connection_sign.*DI_cond_post_norm)
+colormap cool
+colorbar
+c_save(3,:) = caxis;
+title('Estimated GDI')
+
+for ii=2:3
+    subplot(1,3,ii)
+    caxis([-max(abs(c_save(:))) max(abs(c_save(:)))])
+end
+
+for ii=1:3
+    subplot(1,3,ii)
+    xticks(1:13)
+    yticks(1:13)
+    xticklabels(nname)
+    yticklabels(nname)
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
