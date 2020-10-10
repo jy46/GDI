@@ -17,6 +17,7 @@ dim_sizes    = 2+[0 10 20 50 100]; % multiple lines, each for fixed dim
 %dim_sizes = 2+[0 10];
 boot_iter    = 10; % boot iterations per computation
 num_runs     = 50; % number of runs for each data point
+%num_runs = 5
 sim_type     = 'discrete'; % 'discrete' or 'continuous'
     rho = 0.6; % covariance for continuous
 
@@ -99,21 +100,18 @@ if strcmp(sim_type,'continuous')
     true_DI = -0.5*log(1-(rho^2));
 elseif strcmp(sim_type,'discrete')
     % JOINT
-    px1y1 = Px*(1-p)
-    px1y0 = Px*p
-    px0y1 = (1-Px)*p
-    px0y0 = (1-Px)*(1-p)
+    px1y1 = Px*(1-p);
+    px1y0 = Px*p;
+    px0y1 = (1-Px)*p;
+    px0y0 = (1-Px)*(1-p);
     % MARGINAL
-    py1 = px1y1+px0y1
-    py0 = px1y0+px0y0
-    px1 = px1y1+px1y0
-    px0 = px0y1+px0y0
+    py1 = px1y1+px0y1;
+    py0 = px1y0+px0y0;
+    px1 = px1y1+px1y0;
+    px0 = px0y1+px0y0;
     % GDI
-    true_GDI = (px1y1*log(px1y1/(px1*py1)))+(px1y0*log(px1y0/(px1*py0)))+(px0y1*log(px0y1/(px0*py1)))+(px0y0*log(px0y0/(px0*py0)))
+    true_DI = (px1y1*log(px1y1/(px1*py1)))+(px1y0*log(px1y0/(px1*py0)))+(px0y1*log(px0y1/(px0*py1)))+(px0y0*log(px0y0/(px0*py0)));
 end
-
-%% SAVE
-save(sprintf('scaling_figs/%s_saved.mat',sim_type))
 
 %% PLOT AGAINST SAMPLE SIZE
 figure
@@ -127,10 +125,10 @@ end
 line([min(xlim) max(xlim)],[true_DI true_DI],'Color','k','LineStyle','--')
 hold off
 legend([arrayfun(@(x) sprintf('d_z = %i',x-2),dim_sizes,'UniformOutput',false),...
-       {'True DI'}],'Location','southeast')
+       {'True GDI'}],'Location','southeast')
 xlabel('N')
-ylabel('DI')
-title('Estimated DI vs. Sample Size')
+ylabel('GDI')
+title('Estimated GDI vs. Sample Size')
 box off
 ylim([0 max(ylim)])
 
@@ -144,10 +142,10 @@ end
 line([min(xlim) max(xlim)],[true_DI true_DI],'Color','k','LineStyle','--')
 hold off
 legend([arrayfun(@(x) sprintf('N = %i',x),sample_sizes/2,'UniformOutput',false),...
-       {'True DI'}],'Location','southeast')
+       {'True GDI'}],'Location','southeast')
 xlabel('d_z')
-ylabel('DI')
-title('Estimated DI vs. Dimensionality of Z')
+ylabel('GDI')
+title('Estimated GDI vs. Dimensionality of Z')
 box off
 ylim([0 max(ylim)])
 
@@ -161,17 +159,12 @@ end
 line([min(xlim) max(xlim)],[true_DI true_DI],'Color','k','LineStyle','--')
 hold off
 legend([arrayfun(@(x) sprintf('Run %i',x),1:min(num_runs,5),'UniformOutput',false),...
-       {'True DI'}],'Location','southeast')
+       {'True GDI'}],'Location','southeast')
 xlabel('# Bootstrap Iterations')
-ylabel('DI')
-title('Estimated DI vs. Bootstrap Iterations')
+ylabel('GDI')
+title('Estimated GDI vs. Bootstrap Iterations')
 box off
 ylim([0 max(ylim)])
-
-
-%% SAVE
-
-
 
 
 
