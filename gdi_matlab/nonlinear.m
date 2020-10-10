@@ -7,15 +7,15 @@ addpath ccdi_mat
 
 % PARAMETERS
 R  = 11;      % number of nodes
-N  = 1e5;    % number of samples
+N  = (1e5)/5;    % number of samples
 M  = 3;      % memory parameter for CCDI
-p1 = 0.5;
+p1 = 0.5; % parameters for connectivity
 p2 = 0.75;
 p3 = 0.5;
 p4 = 0.5;
 p5 = 0.75;
 P  = 2; % power used for interaction
-B  = 100; % num bootstrap iterations
+B  = 2; % num bootstrap iterations
  
 % GENERATE
 X = rand(N,R);
@@ -50,141 +50,13 @@ DI_uncond = di_compute(X,M,0,B);
 DI_uncond(DI_uncond<0) = 0;
 DI_uncond
 DI_uncond_signed = connection_sign_regular.*DI_uncond
-DI_uncond_signed(abs(DI_uncond_signed)<0.05)=0
 DI_uncond_signed(logical(eye(R)))=0
-save uncond_run.mat 
+ 
 DI_cond = di_compute(X,M,1,B);
 DI_cond(DI_cond<0) = 0;
 DI_cond
 DI_cond_signed = connection_sign.*DI_cond
-DI_cond_signed(abs(DI_cond_signed)<0.05)=0
 DI_cond_signed(logical(eye(R)))=0
-save cond_run.mat
-
-% CREATE GRAPHS
-% COND
-[s,t] = find(DI_cond_signed~=0);
-c_weights = DI_cond_signed(sub2ind(size(DI_cond_signed), s, t));
-G_DI_cond_signed = digraph(s,t,c_weights);
-
-% UNCOND
-[s,t] = find(DI_uncond_signed~=0);
-u_weights = DI_uncond_signed(sub2ind(size(DI_uncond_signed), s, t));
-G_DI_uncond_signed = digraph(s,t,u_weights);
-
-%%
-close all
-
-scale_factor = 10;
-
-figure
-h_c = plot(G_DI_cond_signed,'LineWidth',scale_factor*abs(G_DI_cond_signed.Edges.Weight));
-box off
-title('Conditioned')
-
-xlim([0 3])
-ylim([0 3])
-
-h_c.NodeColor = [141,211,199]/255;
-h_c.MarkerSize = 30;
-h_c.EdgeColor = 'k';
-h_c.EdgeAlpha = 1;
-h_c.ArrowPosition = 0.6;
-h_c.NodeLabel = [];
-set(gca,'XColor','none')
-set(gca,'YColor','none')
-axis square
-h_c.ArrowSize = 15;
-
-
-h_c.XData(6) = mean(xlim);
-h_c.YData(6) = mean(ylim);
-
-h_c.XData(2) = mean(xlim) + 0.2*diff(xlim);
-h_c.YData(2) = h_c.YData(6);
-
-h_c.XData(7) = h_c.XData(2);
-h_c.YData(7) = h_c.YData(6) + 0.2*diff(ylim);
-
-h_c.XData(8) = h_c.XData(2) + 0.2*diff(xlim);
-h_c.YData(8) = h_c.YData(2);
-
-h_c.XData(9) = h_c.XData(2);
-h_c.YData(9) = h_c.YData(6) - 0.2*diff(ylim);
-
-h_c.XData(5) = h_c.XData(6);
-h_c.YData(5) = h_c.YData(6) - 0.2*diff(ylim);
-
-[rotpoint] = rotate_in_2D([h_c.XData(5)-mean(xlim) h_c.YData(5)-mean(ylim)]',-5);
-h_c.XData(5) = rotpoint(1)+mean(xlim);
-h_c.YData(5) = rotpoint(2)+mean(ylim);
-
-[rotpoint] = rotate_in_2D([h_c.XData(5)-mean(xlim) h_c.YData(5)-mean(ylim)]',-45);
-h_c.XData(3) = rotpoint(1)+mean(xlim);
-h_c.YData(3) = rotpoint(2)+mean(ylim);
-
-h_c.XData(10) = (h_c.XData(3) + h_c.XData(5))-mean(xlim);
-h_c.YData(10) = (h_c.YData(3) + h_c.YData(5))-mean(ylim);
-
-[rotpoint] = rotate_in_2D([h_c.XData(5)-mean(xlim) h_c.YData(5)-mean(ylim)]',-170);
-h_c.XData(1) = 1.1*rotpoint(1)+mean(xlim);
-h_c.YData(1) = 1.1*rotpoint(2)+mean(ylim);
-
-[rotpoint] = rotate_in_2D([h_c.XData(1)-mean(xlim) h_c.YData(1)-mean(ylim)]',45);
-h_c.XData(4) = rotpoint(1)+h_c.XData(1);
-h_c.YData(4) = rotpoint(2)+h_c.YData(1);
-
-[rotpoint] = rotate_in_2D([h_c.XData(1)-mean(xlim) h_c.YData(1)-mean(ylim)]',90);
-h_c.XData(11) = rotpoint(1)+h_c.XData(4);
-h_c.YData(11) = rotpoint(2)+h_c.YData(4);
-
-
-for ii=1:11
-    if ii<10
-        text(h_c.XData(ii)-0.015*diff(xlim),h_c.YData(ii),num2str(ii),...
-             'FontSize', 12)
-    else
-        text(h_c.XData(ii)-0.03*diff(xlim),h_c.YData(ii),num2str(ii),...
-             'FontSize', 12)
-    end
-end
-
-% viscircles([h_c.XData' h_c.YData'],0.19*ones(11,1),'Color','k',...
-%            'EnhanceVisibility',0)
-
-
-
-figure
-h_u = plot(G_DI_uncond_signed,'LineWidth',scale_factor*abs(G_DI_uncond_signed.Edges.Weight));
-box off
-
-xlim([0 3])
-ylim([0 3])
-
-h_u.XData = h_c.XData;
-h_u.YData = h_c.YData;
-title('Pairwise')
-h_u.NodeColor = [141,211,199]/255;
-h_u.MarkerSize = 30;
-h_u.EdgeColor = 'k';
-h_u.EdgeAlpha = 1;
-h_u.ArrowPosition = 0.6;
-h_u.NodeLabel = [];
-set(gca,'XColor','none')
-set(gca,'YColor','none')
-axis square
-h_u.ArrowSize = 15;
-
-
-for ii=1:11
-    if ii<10
-        text(h_c.XData(ii)-0.015*diff(xlim),h_c.YData(ii),num2str(ii),...
-             'FontSize', 12)
-    else
-        text(h_c.XData(ii)-0.03*diff(xlim),h_c.YData(ii),num2str(ii),...
-             'FontSize', 12)
-    end
-end
 
 
 %% COMPUTE TRUE VALUES OF GDI
@@ -205,10 +77,34 @@ true_GDI(5,10) = 0.5*log(1+(((p5/2)*(1-p1))/(1-p5)));
 true_GDI(1,4)  = 0.5*log(1+(((p2)*(1-p1))/(1-p2)));
 true_GDI(4,11) = 0.5*log(1+(((p4)*(1-p2))/(1-p4)));
 
+%% PLOT RESULTS
+figure
 
+subplot(1,3,1)
+imagesc(DI_uncond_signed)
+colormap cool
+colorbar
+c_save(1,:) = caxis;
+title('Estimated DI')
 
+subplot(1,3,2)
+imagesc(true_GDI)
+colormap cool
+colorbar
+c_save(2,:) = caxis;
+title('True GDI')
 
+subplot(1,3,3)
+imagesc(DI_cond_signed)
+colormap cool
+colorbar
+c_save(3,:) = caxis;
+title('Estimated GDI')
 
+for ii=1:3
+    subplot(1,3,ii)
+    caxis([-max(abs(c_save(:))) max(abs(c_save(:)))])
+end
 
 
 
