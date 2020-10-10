@@ -33,6 +33,12 @@ function [connection_sign, connection_sign_regular] = sign_inference(X,M)
                 connection_sign(ii,jj) = sign(r_partial_causal(I));
 
                 I = find(max(abs(r_regular_causal))==abs(r_regular_causal));
+                if length(I)>1
+                    if abs(sum(sign(r_regular_causal(I))))~=length(I)
+                        error('ERROR: Multiple peaks, not all same sign')
+                    end
+                    I = I(1);
+                end
                 connection_sign_regular(ii,jj) = sign(r_regular_causal(I));                 
             end
         end
