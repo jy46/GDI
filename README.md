@@ -78,7 +78,7 @@ which shows that GDI eliminated the indirect connection from node 0 to 2 that wa
 
 ## MATLAB
 ### Installation
-These steps are required:
+These steps are required (although all steps regarding CTM-DI can be ignored if not running arb.m or cpg.m):
 1. Download [CCMI](https://github.com/sudiptodip15/CCMI) and [CTM-DI](http://www.ece.rice.edu/neuroengineering/). Extract all files from the CIT folder of CCMI, and place them in the ccdi_mat directory of our code. The CTM_DI_package folder of CTM-DI should be placed at the same directory level as the ccdi_mat directory of our code. Ensure that you have the necessary Python packages installed as listed in the prior Python section.
 
 2. Modify a few lines of the CCMI code to include the CMI estimate for each bootstrap iteration before averaing across bootstrap iterations occurs. The specific lines that we want to modify are right around the return statement at the end of the definition for `get_cmi_est()` in the file `CCMI.py`. When we downloaded CCMI, the lines to be considered were 102 to 106, which appear as:
@@ -129,9 +129,12 @@ Change those lines to include the CMI estimates before averaging over bootstrap 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 ```
 
-4. Since the core of this toolbox relies on the CCMI implementation which is written in Python, you must insert your system path and python path in the `gdi_matlab/python_path_script.m` file. This script is called by deeper functions to access python. This means copying the terminal output for the command `echo $PATH` and putting it in between the '' for system_path in the `gdi_matlab/python_path_script.m` file, and then also copying the output for the command `which python` and putting it in between the '' for the python_path in the `gdi_matlab/python_path_script.m` file.
+4. Modify `CTM_DI_package/CTM_DI/Connect_CTM.m`as follows:
+- A
 
-5. (Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here](https://drive.google.com/file/d/1OOLpoqL5_SYA9FDRIifWdFgqsfy8w2Q5/view?usp=sharing) and place it in the `gdi_matlab` folder.
+5. Since the core of this toolbox relies on the CCMI implementation which is written in Python, you must insert your system path and python path in the `gdi_matlab/python_path_script.m` file. This script is called by deeper functions to access python. This means copying the terminal output for the command `echo $PATH` and putting it in between the '' for system_path in the `gdi_matlab/python_path_script.m` file, and then also copying the output for the command `which python` and putting it in between the '' for the python_path in the `gdi_matlab/python_path_script.m` file.
+
+6. (Optional) If you want to run example 4, the arbitrary network, then please download the simulation file [here](https://drive.google.com/file/d/1OOLpoqL5_SYA9FDRIifWdFgqsfy8w2Q5/view?usp=sharing) and place it in the `gdi_matlab` folder.
 
 ### Usage
 The `ccdi_mat` folder contains all of the files/functions for GDI. The core functions are:
