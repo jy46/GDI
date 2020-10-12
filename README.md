@@ -223,4 +223,4 @@ GDI is applied to binned spike times produced by an abritrary model of a network
 GDI is applied to binned spike times produced by a model of the central pattern generator (CPG) in *Aplyisa*.
 
 ## Licensing
-We have adopted the GPLv2 license for this toolbox (see LICENSE and GPLv2_note.txt files).
+We have adopted the GPLv2 license for this toolbox (see [LICENSE](LICENSE) and [GPLv2_note.txt](GPLv2_note.txt) files).
