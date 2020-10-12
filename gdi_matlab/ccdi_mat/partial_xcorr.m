@@ -5,6 +5,7 @@ function [r_partial, r] = partial_xcorr(X_raw, reference, target, max_tau)
 % max_tau is the maximum integer to shift positively and negatively for the
 % partial cross correlation. All other channels are conditioned on in this
 % analysis.
+% Copyright (C) 2020 Joseph Young - see GPLv2_note.txt for full notice
 
     % Initialize
     tau_vec = (-max_tau:max_tau);
