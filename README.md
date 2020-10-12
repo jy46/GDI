@@ -1,4 +1,4 @@
-# Graphical Directed Information (GDI) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; https://zenodo.org/badge/DOI/10.5281/zenodo.4081728.svg
+# Graphical Directed Information (GDI) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [![DOI](https://zenodo.org/badge/298607410.svg)](https://zenodo.org/badge/latestdoi/298607410)
 This code is provided in tandem with our paper on graphical directed information (GDI), which is a model-free technique that infers causal influences between pairs of time series and in particular captures unique influences between pairs by conditioning on other time series. 
 
 The directed information (DI) from a time series X(t) to another time series Y(t) is the mutual information (MI) between the past of X(t) and the present of Y(t) conditioned on the past of Y(t), which means DI quantifies the causal influence exclusively from X(t) to Y(t). 
