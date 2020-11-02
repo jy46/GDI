@@ -10,7 +10,7 @@ addpath CTM_DI_package/CTM_DI/
 % User parameters
 time_step   = 0.001;
 M           = 3; % memory parameter
-bin_width   = 30;  
+bin_width   = 35;  
 boot_iter   = 2; % number of bootstrap iterations to use for classifier
 time_max    = 300; % Maximum time to extract in seconds
 
