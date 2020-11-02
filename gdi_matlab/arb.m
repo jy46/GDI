@@ -130,6 +130,9 @@ end
 [connection_sign, connection_sign_regular] = sign_inference(spike_times_binned_further,M);
 
 % Estimate CCDI
+warning('WARNING: Setting entries with >1 spike to 1')
+spike_times_binned_further(spike_times_binned_further>1) = 1;
+
 [DI, DI_list] = di_compute(spike_times_binned_further,M,0,boot_iter);
 
 DI(DI<0) = 0;
